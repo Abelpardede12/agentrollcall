@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agent Roll Call — Daily Check-In for Agent ID Holders</title>
+<meta name="description" content="Agent Roll Call is the daily check-in dApp for Agent ID holders on BNB Smart Chain. Check in every day, build your streak, and collect soulbound streak badges." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">📋</div>
+    <div>
+      <h1>Agent Roll Call</h1>
+      <p class="tagline">The daily check-in for Agent ID holders</p>
+    </div>
+  </div>
+  <button id="connectBtn" class="btn btn-primary">Connect Wallet</button>
+</header>
+
+<div id="noticeBar" class="notice hidden"></div>
+<div id="errorBar" class="error-bar hidden"></div>
+
+<main>
+  <section class="card hero">
+    <div class="hero-text">
+      <h2>Show up. Every day. On-chain.</h2>
+      <p>
+        Agent Roll Call is a daily ritual for the Agent ID community. If your wallet holds an
+        Agent ID, you can check in once a day — your streak lives on-chain for everyone to see.
+        Keep the streak alive and collect soulbound badges at 3, 7, 14, and 30 days.
+      </p>
+      <p class="muted">No deposits. No tokens for sale. Just presence, proven daily.</p>
+    </div>
+    <div class="hero-action">
+      <div id="agentIdStatus" class="id-status unknown">Agent ID status: connect your wallet</div>
+      <button id="checkInBtn" class="btn btn-big" disabled>Check In Today</button>
+      <p id="checkInHint" class="hint"></p>
+    </div>
+  </section>
+
+  <section class="stats-grid">
+    <div class="card stat">
+      <div class="stat-num" id="statAgents">–</div>
+      <div class="stat-label">Agents checked in (all time)</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-num" id="statCheckIns">–</div>
+      <div class="stat-label">Total check-ins</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-num" id="statMyStreak">–</div>
+      <div class="stat-label">Your current streak (days)</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-num" id="statMyBest">–</div>
+      <div class="stat-label">Your best streak (days)</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-num" id="statMyTotal">–</div>
+      <div class="stat-label">Your total check-ins</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-num" id="statMyBadges">–</div>
+      <div class="stat-label">Your badges</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>🏅 Streak Badges</h3>
+    <p class="muted">
+      Badges are soulbound — they can never be transferred or sold. They simply prove you showed up.
+      Claim each tier once your current streak reaches it.
+    </p>
+    <div id="badgeGrid" class="badge-grid"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="card">
+      <h3>🔥 Top Current Streaks</h3>
+      <ol id="leaderboard" class="leaderboard">
+        <li class="muted">Loading…</li>
+      </ol>
+    </section>
+    <section class="card">
+      <h3>🕒 Recent Check-Ins</h3>
+      <ul id="activityFeed" class="feed">
+        <li class="muted">Loading…</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="card how">
+    <h3>How it works</h3>
+    <ol>
+      <li>Hold an Agent ID in your wallet (Agent IDs are claimed inside the Binance app).</li>
+      <li>Connect your wallet here — we only ever use the standard injected wallet connection.</li>
+      <li>Press <strong>Check In Today</strong> and confirm in your wallet. One check-in per UTC day.</li>
+      <li>Come back tomorrow to grow your streak. Miss a full day and the streak restarts at 1.</li>
+      <li>At 3, 7, 14, and 30-day streaks, claim your soulbound badge — free, forever yours.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <p>
+    Check-ins cost only the BNB Smart Chain network gas fee, paid to the network — Agent Roll Call
+    never charges a fee, never takes custody of funds, and the contract cannot move your assets.
+    Badges are collectibles that record your streak; no monetary value is promised or implied.
+  </p>
+  <p class="muted">
+    Agent Roll Call is a community project built for the Agent ID Hackathon. Agent ID is checked
+    on-chain via the public Agent ID registry contract — your address is only ever read, never tracked off-chain.
+  </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="abi.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
